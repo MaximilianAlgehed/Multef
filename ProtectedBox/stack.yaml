@@ -1,0 +1,8 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- .
+- ../DropboxAPI
+extra-deps:
+- obdd-0.8.1
+resolver: lts-9.9

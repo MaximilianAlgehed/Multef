@@ -1,0 +1,58 @@
+name:                ProtectedBox
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/githubuser/ProtectedBox#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2017 Author name here
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     ProtectedBox
+                     , ProtectedBox.DropboxInteraction
+                     , ProtectedBox.FIO
+                     , ProtectedBox.UNF
+                     , ProtectedBox.TINI
+                     , ProtectedBox.SME
+                     , ProtectedBox.FSME
+                     , ProtectedBox.Plugin
+                     , ProtectedBox.Plugins.Comments
+                     , ProtectedBox.Plugins.Checksum
+                     , ProtectedBox.Plugins.GZip
+                     , ProtectedBox.Plugins.Tar
+                     , ProtectedBox.Plugins.Hashes
+                     , ProtectedBox.Plugins.Exponential
+  build-depends:       base >= 4.7 && < 5
+                     , DropboxAPI
+                     , bytestring >= 0.10.8.1 && < 0.11
+                     , mtl
+                     , stm
+                     , filepath >= 1.4.1 && < 1.5
+                     , cryptohash-sha256
+                     , base64-bytestring
+                     , zlib
+                     , obdd
+                     , deepseq
+                     , tar
+                     
+  default-language:    Haskell2010
+
+executable protected-box-app 
+  hs-source-dirs:      app 
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N4
+  build-depends:       base
+                     , ProtectedBox
+                     , stm
+                     , DropboxAPI
+                     , deepseq
+                     , cryptohash-sha256
+                     , bytestring
+  default-language:    Haskell2010
