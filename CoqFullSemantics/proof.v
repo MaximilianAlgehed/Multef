@@ -645,6 +645,8 @@ Definition RESULTS := TINI /\ TRANSP_1 /\ TSNI /\ TRANSP_2.
 
 (*********************************************************************)
 
+Section NoNeedToRead.
+
 Lemma value_lemma : forall l t,
   IsValue t ->
   IsValue (pt l t).
@@ -3789,5 +3791,7 @@ Theorem results : RESULTS.
   pose (tini_1, transparency_1, tsni, transparency_2).
   intuition.
 Qed.
+
+End NoNeedToRead.
 
 Definition results_all_proved : RESULTS := results.
