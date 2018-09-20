@@ -19,9 +19,8 @@ import ProtectedBox.DropboxInteraction
 unf :: FIO a                    -- ^ Computation
     -> [Branch]                 -- ^ PC
     -> TChan ([Branch], String) -- ^ Output
-    -> String                   -- ^ Plugin label  -- Ale: what's this? Max: The label of the plugin
-    -> String                   -- ^ Superuser     -- Ale: what's this?
-                                                   -- Max: The label of the user (you both of these to make sure that labels new metadata files are correct)
+    -> String                   -- ^ Plugin label
+    -> String                   -- ^ Superuser
     -> Dropbox (a, [Branch])
 
 unf (Done a) pc o l owner = return (a, pc)

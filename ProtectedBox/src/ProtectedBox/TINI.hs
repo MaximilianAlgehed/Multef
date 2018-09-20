@@ -17,9 +17,8 @@ import ProtectedBox.DropboxInteraction
 tini :: FIO a                    -- ^ Computation
      -> [Branch]                 -- ^ PC
      -> TChan ([Branch], String) -- ^ Output
-     -> String                   -- ^ Plugin label  -- Ale: what's this? Max: The label of the plugin
-     -> String                   -- ^ Superuser     -- Ale: what's this?
-                                                    -- Max: The label of the user (you both of these to make sure that labels new metadata files are correct)
+     -> String                   -- ^ Plugin label
+     -> String                   -- ^ Superuser
      -> Dropbox (a, [Branch])
 
 tini (Done a) pc o l owner = return (a, pc)
@@ -29,8 +28,8 @@ tini (Branch (Raw fio) k) pc o l owner = do
   tini (k (Raw a)) pc o l owner
 
 tini (Branch (Faceted p priv pub) k) pc o l owner
-  | takePrivate pc p = tini (Branch priv k) pc o l owner -- Probably wrong
-  | takePublic  pc p = tini (Branch pub k)  pc o l owner -- Probably wrong
+  | takePrivate pc p = tini (Branch priv k) pc o l owner
+  | takePublic  pc p = tini (Branch pub k)  pc o l owner
   | otherwise = do
       (a1,_) <- tini (Branch priv return) (Private p : pc) o l owner
       (a2,_) <- tini (Branch pub return)  (Public p : pc) o l owner
